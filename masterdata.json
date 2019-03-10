@@ -1,0 +1,54 @@
+{
+  "satyam18@navgurukul.org": {
+    "3/10/2019": [
+      {
+        "agenda": "i will complete html",
+        "complete": true,
+        "id": 1
+      },
+      {
+        "agenda": "I will complete javascript also",
+        "complete": false,
+        "id": 2
+      }
+    ]
+  },
+  "bhavnesh18@navgurukul.org": {
+    "3/10/2019": [
+      {
+        "agenda": "html",
+        "complete": false,
+        "id": 1
+      },
+      {
+        "agenda": "python",
+        "complete": false,
+        "id": 2
+      }
+    ]
+  },
+  "jagannath18@navgurukul.org": {
+    "3/10/2019": [
+      {
+        "agenda": "I will complete 10 questions in js from hackerrank",
+        "complete": false,
+        "id": 1
+      },
+      {
+        "agenda": "I will write my gbu today night",
+        "complete": false,
+        "id": 2
+      },
+      {
+        "agenda": "I will take a class at 8 pm today on topic api",
+        "complete": false,
+        "id": 3
+      },
+      {
+        "agenda": "I will make a video on api of my chat-bot",
+        "complete": true,
+        "id": 4
+      }
+    ]
+  }
+}
