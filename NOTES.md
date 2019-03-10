@@ -46,7 +46,7 @@ satyam18@navgurukul.org" : { "3/9/2019":[{ "agenda" : "complete Python",
 
 #### -> Every user will have their own key.
 
-#### -> By typing ```list-all``` we will be able to get the list of all the commands that we can use with this Chatbot.
+#### -> ~~By typing ```list-all``` we will be able to get the list of all the commands that we can use with this Chatbot.~~
 
 #### ->~~Command ``` sudo set agenda: agenda``` will ask the user to set his/her agenda.~~
 
@@ -60,7 +60,7 @@ satyam18@navgurukul.org" : { "3/9/2019":[{ "agenda" : "complete Python",
 
 #### -> ~~Command ``` sudo get-all completed``` will get all the agendas which are completed.~~
 
-#### ->  Command ``` sudo-get-all: date``` will get all agendas related to that date.
+#### ->  ~~Command ``` sudo-get-all: date``` will get all agendas related to that date.~~
 
 
 
