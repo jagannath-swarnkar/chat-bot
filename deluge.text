@@ -1,0 +1,130 @@
+
+response = Map();
+if(message.containsIgnoreCase("HI") || message.containsIgnoreCase("HEY") || message.containsIgnoreCase("HELP"))
+{
+	text = "Hi! How you doin'? :wink:";
+	response.put("suggestions",{"list":{{"text":"set agenda new agenda"},{"text":"get all"},{"text":"change agenda:2 new agenda"},{"text":"get all completed"},{"text":"get all pending"},{"text":"complete agenda:2"},{"text":"get all 3/10/2019"}}});
+}
+else if(message.containsIgnoreCase("help"))
+{
+	x = 123;
+}
+else if(message.toLowerCase().indexOf("set agenda") == 0)
+{
+	todo = message.toCollection("set agenda").get(1).trim();
+	payload = Map();
+	payload.put("agenda",todo);
+	headerMap = Map();
+	headerMap.put("Content-Type","application/json");
+	headerMap.put("charset","UTF-8");
+	apiResponse = invokeurl
+	[
+		url :"https://maze-tv.glitch.me/" + user.get("email") + "/set-agenda"
+		type :POST
+		parameters:payload.toString()
+		headers:headerMap
+	];
+	text = "Your todo has been added :)";
+}
+else if(message.containsIgnoreCase("get all pending"))
+{
+	apiResponse = invokeurl
+	[
+		url :"https://maze-tv.glitch.me/" + user.get("email") + "/get-all-pending"
+		type :GET
+	];
+	response.put("text","Here is a list of your pending todos.");
+	card = Map();
+	card.put("theme","modern-inline");
+	response.put("card",card);
+	slidesList = list();
+	slidesList0 = Map();
+	slidesList0.put("type","list");
+	slidesList0.put("title","TODOs");
+	dataList = apiResponse;
+	slidesList0.put("data",dataList);
+	slidesList.add(slidesList0);
+	response.put("slides",slidesList);
+	return response;
+}
+else if(message.toLowerCase().indexOf("change agenda:") == 0)
+{
+	changeMsg = message.toLowerCase().toCollection("change agenda:");
+	todoId = changeMsg.get(1).subText(0,1);
+	todo = changeMsg.get(1).subText(2,changeMsg.get(1).size() - 2);
+	payload = Map();
+	payload.put("agenda",todo);
+	headerMap = Map();
+	headerMap.put("Content-Type","application/json");
+	headerMap.put("charset","UTF-8");
+	apiResponse = invokeurl
+	[
+		url :"https://maze-tv.glitch.me/" + user.get("email") + "/change-agenda/" + todoId.trim()
+		type :PUT
+		parameters:payload.toString()
+		headers:headerMap
+	];
+	response.put("text","Your agenda has changed successfuly.");
+	return response;
+}
+else if(message.toLowerCase().indexOf("complete agenda:") == 0)
+{
+	changeMsg = message.toLowerCase().toCollection("complete agenda:");
+	todoId = changeMsg.get(1).subText(0,1).trim();
+	apiResponse = invokeurl
+	[
+		url :"https://maze-tv.glitch.me/" + user.get("email") + "/complete-agenda/" + todoId
+		type :PUT
+	];
+	response.put("text","Your agenda has been marked as done.");
+	return response;
+}
+else if(message.containsIgnoreCase("get all completed"))
+{
+	apiResponse = invokeurl
+	[
+		url :"https://maze-tv.glitch.me/" + user.get("email") + "/get-all-completed"
+		type :GET
+	];
+	response.put("text","Here is a list of your completed todos.");
+	card = Map();
+	card.put("theme","modern-inline");
+	response.put("card",card);
+	slidesList = list();
+	slidesList0 = Map();
+	slidesList0.put("type","list");
+	slidesList0.put("title","TODOs");
+	dataList = apiResponse;
+	slidesList0.put("data",dataList);
+	slidesList.add(slidesList0);
+	response.put("slides",slidesList);
+	return response;
+}
+else if(message.containsIgnoreCase("get all"))
+{
+	apiResponse = invokeurl
+	[
+		url :"https://maze-tv.glitch.me/" + user.get("email") + "/get-all"
+		type :GET
+	];
+	response.put("text","Here is a list of your completed todos.");
+	card = Map();
+	card.put("theme","modern-inline");
+	response.put("card",card);
+	slidesList = list();
+	slidesList0 = Map();
+	slidesList0.put("type","list");
+	slidesList0.put("title","TODOs");
+	dataList = apiResponse;
+	slidesList0.put("data",dataList);
+	slidesList.add(slidesList0);
+	response.put("slides",slidesList);
+	return response;
+}
+// else if(message.toLowerCase().indexOf("get all") == 0)
+else
+{
+	text = "Messaging me for the first time? Come say a Hi ! :grinning:";
+}
+response.put("text",text);
+return response;
